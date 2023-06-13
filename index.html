@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container" id="container">
+            <div class="input-cont search-cont">
+                <label for="search">Search</label>
+                <div class="search-input-cont">
+                    <input type="text" id="search" placeholder="Search...">
+                    <button id="search-button"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                    <span id="text"></span>
+                </div>
+            </div><br>
+            <div class="input-cont">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Username">
+                <span id="text"></span>
+            </div>
+            <div class="input-cont">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" placeholder="Surname">
+                <span id="text"></span>
+            </div>
+            <div class="input-cont">
+                <label for="age">Age</label>
+                <input type="number" id="age" placeholder="Age" min="10" max="100">
+                <span id="text"></span>
+            </div>
+            <div class="button-cont">
+                <div class="button-block">
+                    <button id="button" class="button">Create</button>
+                    <button id="disable-btn">Disable</button>
+                </div>
+            </div>
+            <div id="loading-cont" class="loading-cont">
+                <div id="loading" class="loading">
+                    <span id="percent">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-cont">
+            <table class="table" id="table-user"></table>
+        </div>
+    </div>
+    <script src="./response.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
