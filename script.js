@@ -29,7 +29,7 @@ function setUserTable (data) {
                 <td class="td-users">${elem.name}</td>
                 <td class="td-users">${elem.surname}</td>
                 <td class="td-users">${elem.age}</td>
-                <td class="td-users"><button class="edit-btn" onclick="onEdit(${i}, '${elem.name}', '${elem.surname}', ${elem.age})">Edit</button> 
+                <td class="td-users"><button class="edit-btn" onclick="onEdit(${i})">Edit</button> 
                 <button class="delete-btn" onclick="deleteUser(${i})">Delete</button></td>
             </tr>
         `;
@@ -91,44 +91,14 @@ function averageAge (array, avgAge) {
 }
 
 
-// function onEdit (i, newName, newSurname, newAge) {
-//     userName.value = newName;
-//     surName.value = newSurname;
-//     age.value = newAge;
+function onEdit (i) {
+    userName.value = userData[i].name;
+    surName.value = userData[i].surname;
+    age.value = userData[i].age;
     
-//     button.textContent ="Save";
-//     editId = i;
-//     putUserData(userData[editId].id)
-//       .then(response => {
-//         console.log(response);
-//         return getUsers()
-//       }).then(data => {
-//         userData = data;
-//         userTableData();
-//         console.log('Success');
-//       })
-// }
- 
-function onEdit(i, newName, newSurname, newAge) {
-    userName.value = newName;
-    surName.value = newSurname;
-    age.value = newAge;
-  
-    button.textContent = "Save";
-    editId = i;
-    putUserData(userData[editId].id, {
-      name: newName,
-      surname: newSurname,
-      age: newAge
-    }).then(response => {
-      console.log(response);
-      userData = response;
-      userTableData();
-      console.log('Success');
-    }).then(data => {
-      return getUsers();
-    });
-  }
+    button.textContent ="Save";
+    editId = userData[i].id;
+}
   
 
 
@@ -337,8 +307,8 @@ function createUserResp (newUser) {
     newUser = {name: userNameX, surname: surNameX, age: ageX};
     createUserResponse(newUser);
 }
-// createUserResp(userData)
-// createUserResponse(userData);
+
+
 
 function checkUsersAndPush () {
     let userNameX = userName.value;
@@ -346,13 +316,16 @@ function checkUsersAndPush () {
     let ageX = age.value;
 
     if (userNameValid(userName) && surNameValid(surName) && ageValid(age)) {
-        if (editId || editId === 0) {
-            userData[editId] = {name:userNameX, surname:surNameX, age:ageX};
-            editId = undefined;
+        if (editId) {
+           putUserData({name: userNameX, surname: surNameX, age: ageX, id: editId})
+        .then((rec) => {
+            return getUsers();
+        }).then((data) => {
+            userData = data;
+            userTableData();
+        })
         } else {
-            // userData.push({name:userNameX, surname:surNameX, age:ageX});
             createUserResp(userData);
-            // createUserResponse(userData);
         }
         percentLoading.style.color = '#fff'
         loadingContainer.style.display = 'block';

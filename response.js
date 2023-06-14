@@ -33,8 +33,8 @@ async function getUsers() {
 }
 
 
-async function putUserData(userId, userData) {
-    const response = await fetch(`http://localhost:3000/users${userId}`, {
+async function putUserData(userData) {
+    const response = await fetch(`http://localhost:3000/users`, {
       method: 'PUT',
       headers: {
         "Content-type": "application/json"
